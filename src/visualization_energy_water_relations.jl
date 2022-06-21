@@ -45,7 +45,7 @@ function plot_net_water_decision()
             elseif decision == 2
                 add_trace!(p, scatter(x=[1,2,3,4,5], y=calculate_net_water_feed(hum), marker=attr(color=color[hum]), name="$action Humidity $hum", line=attr(color=color[hum], width=2, dash="dash")))
             elseif decision == 3
-                add_trace!(p, scatter(x=[1,2,3,4,5], y=-waterloss[hum, :]*2, line=attr(color=color[hum], with=2), name="$action Humidity $hum"))
+                add_trace!(p, scatter(x=[1,2,3,4,5], y=-waterloss[hum, :]*2-searchcost_water*ones(5), line=attr(color=color[hum], with=2), name="$action Humidity $hum"))
             end
         end
         relayout!(p, barmode="scatter", xaxis_title_text="Temperature", yaxis_title_text="Net water", plot_bgcolor="F1F3F9", title="Net water for different activities, temperatures and humidities.")
